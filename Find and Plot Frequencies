@@ -1,0 +1,9 @@
+from nltk.probability import FreqDist
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+find_plot_frequencies(grouped_df, candidate_list1_1)
+find_plot_frequencies(grouped_df2, candidate_list1_2)
+find_plot_frequencies(grouped_df3, candidate_list2_1)
+find_plot_frequencies(grouped_df4, candidate_list2_2)
+find_plot_frequencies(grouped_df5, candidate_list3)
