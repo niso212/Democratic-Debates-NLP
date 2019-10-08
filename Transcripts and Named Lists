@@ -1,0 +1,56 @@
+#Import scraped transcripts/files and establish reference lists
+
+with open('dem debate transcript 1.1.txt', 'rb') as f1: 
+  text1 = f1.read()
+  
+with open('dem debate transcript 1.2.2.txt', 'rb') as f2: 
+  text2 = f2.read()    
+
+with open('dem debate transcript 2.1.txt', 'rb') as f3:
+  text3 = f3.read()
+  
+with open('dem debate transcript 2.2.txt', 'rb') as f4:
+  text4 = f4.read()
+  
+with open('dem debate transcript 3.txt', 'rb') as f5:
+  text5 = f5.read()
+  
+sentiment_df = pd.read_excel('labeled sentiment list.xlsx')
+zipobj = zip(sentiment_df['WORD'], sentiment_df['VALUE'])
+sentiment_dict = dict(zipobj)
+
+names_list1_1 = ['HOLT', 'GUTHRIE', 'WARREN', 'O ROURKE', 'BOOKER', 'KLOBUCHAR', 
+              'CASTRO', 'GABBARD', 'DIAZ BALART', 'DE BLASIO', 'DELANEY', 'RYAN',
+             'INSLEE', 'TODD', 'MADDOW', 'UNKNOWN']
+
+candidate_list1_1 = ['WARREN', 'O ROURKE', 'BOOKER', 'KLOBUCHAR', 
+              'CASTRO', 'GABBARD', 'DE BLASIO', 'DELANEY', 'RYAN',
+             'INSLEE']
+
+names_list1_2 = ['HOLT', 'GUTHRIE', 'MADDOW', 'TODD', 'SANDERS', 'GILLIBRAND', 'BOOKER', 
+               'BENNET', 'BIDEN', 'HARRIS', 'HICKENLOOPER, BUTTIGIEG', 'DIAZ BALART',  'YANG',
+              'SWALWELL', 'DE BLASIO', 'WILLIAMSON', 'UNKNOWN']
+
+candidate_list1_2 = ['SANDERS', 'GILLIBRAND', 'BENNET', 'BIDEN', 'HARRIS', 'HICKENLOOPER', 'BUTTIGIEG', 'YANG',
+              'SWALWELL', 'WILLIAMSON']
+
+names_list2_1 = ['TAPPER', 'BASH', 'LEMON', 'SANDERS', 'WARREN', 'BUTTIGIEG', 'O ROURKE', 'KLOBUCHAR', 'HICKENLOOPER',
+                'RYAN', 'DELANEY', 'WILLIAMSON', 'BULLOCK']
+
+candidate_list2_1 = ['SANDERS', 'WARREN', 'BUTTIGIEG', 'O ROURKE', 'KLOBUCHAR', 'HICKENLOOPER',
+                'RYAN', 'DELANEY', 'WILLIAMSON', 'BULLOCK']
+
+names_list2_2 = ['TAPPER', 'BASH', 'LEMON', 'BIDEN', 'HARRIS', 'BOOKER', 'CASTRO', 'YANG', 'GABBARD', 'GILLIBRAND',
+                'INSLEE', 'BENNET', 'DE BLASIO'] 
+
+candidate_list2_2 = ['BIDEN', 'HARRIS', 'BOOKER', 'CASTRO', 'YANG', 'GABBARD', 'GILLIBRAND',
+                'INSLEE', 'BENNET', 'DE BLASIO']
+
+names_list3 = ['MUIR', 'DAVIS', 'RAMOS', 'BIDEN', 'WARREN', 'BOOKER', 'SANDERS', 'HARRIS', 'BUTTIGIEG',
+              'CASTRO', 'KLOBUCHAR', 'O ROURKE', 'YANG']
+
+candidate_list3 = ['BIDEN', 'WARREN', 'BOOKER', 'SANDERS', 'HARRIS', 'BUTTIGIEG',
+              'CASTRO', 'KLOBUCHAR', 'O ROURKE', 'YANG']
+              
+              
+              
