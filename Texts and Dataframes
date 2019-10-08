@@ -1,0 +1,94 @@
+### Clean the texts and create the dataframes
+
+# Clean-up the 1st .txt file (Debate 1 Round 1)
+
+text1 = text1.replace(b'\x92', b' ')
+text1 = text1.replace(b'\x97', b' ')
+text1 = text1.replace(b'\x91', b' ')
+text1 = text1.replace(b'DEBLASIO', b'DE BLASIO')
+text1 = text1.replace(b'DIAZ-BALART', b'DIAZ BALART')
+
+text1 = text1.decode('utf-8')
+text1 = text1.split('\r\n\r\n')
+
+# Clean-up the 2nd .txt file (Debate 1 Round 2)
+text2 = text2.replace(b'\x92', b' ')
+text2 = text2.replace(b'\x93', b' ')
+text2 = text2.replace(b'\x94', b' ')
+text2 = text2.replace(b'\x97', b' ')
+
+text2 = text2.decode('utf-8')
+text2 = text2.split('\r\n\r\n')
+
+# Clean-up the 3rd .txt file (Debate 2 Round 1)
+
+text3 = text3.replace(b'\x92', b' ')
+text3 = text3.replace(b'\x93', b' ')
+text3 = text3.replace(b'\x94', b' ')
+text3 = text3.replace(b'\x97', b' ')
+text3 = text3.replace(b"O'ROURKE", b'O ROURKE')
+
+text3 = text3.decode('utf-8')
+text3 = text3.split('\r\n\r\n')
+
+# Clean-up the 4th .txt file (Debate 2 Round 2)
+
+text4 = text4.replace(b'\x92', b' ')
+text4 = text4.replace(b'\x93', b' ')
+text4 = text4.replace(b'\x94', b' ')
+text4 = text4.replace(b'\x97', b' ')
+
+text4 = text4.decode('utf-8')
+text4 = text4.split('\r\n\r\n')
+
+# Clean-up the 5th .txt file (Debate 3) 
+
+text5 = text5.replace(b'\x92', b' ')
+text5 = text5.replace(b'\x93', b' ')
+text5 = text5.replace(b'\x94', b' ')
+text5 = text5.replace(b'\x97', b' ')
+
+text5 = text5.decode('utf-8')
+text5 = text5.split('\r\n\r\n')
+
+# Split text into speaker and corresponding line
+
+text_list1 = split_text(text1)
+text_list2 = split_text(text2)
+text_list3 = split_text(text3)
+text_list4 = split_text(text4) 
+text_list5 = split_text(text5)
+
+# Build DataFrames by speaker, line, and add-in tokenized line
+
+text_df1 = pd.DataFrame(text_list1).rename(columns={0:'speaker', 1:'line'}).drop(columns=2).dropna(how='any', axis=0) #Debate 1 Round 1
+text_df1['split line'] = [line for line in split_lines(text_df1)]
+
+text_df2 = pd.DataFrame(text_list2).rename(columns={0:'speaker', 1:'line'}).drop(columns=2).dropna(how='any', axis=0) #Debate 1 Round 2
+text_df2['split line'] = [line for line in split_lines(text_df2)]
+
+text_df3 = pd.DataFrame(text_list3).rename(columns={0:'speaker', 1:'line'}).drop(columns=2).dropna(axis=0) #Debate 2 Round 1
+text_df3['split line'] = [line for line in split_lines(text_df3)]
+
+text_df4 = pd.DataFrame(text_list4).rename(columns={0:'speaker', 1:'line'}).drop(columns=[2,3]) #Debate 2 Round 2
+text_df4['split line'] = [line for line in split_lines(text_df4)]
+
+text_df5 = pd.DataFrame(text_list5).rename(columns={0:'speaker', 1:'line'}).drop(columns=[2,3]) #Debate 3
+text_df5['split line'] = [line for line in split_lines(text_df5)]
+
+# Copied df grouped by speaker 
+
+text_df_copy1 = text_df1.copy()
+grouped_df1 = text_df_copy1.groupby('speaker')
+
+text_df_copy2 = text_df2.copy()
+grouped_df2 = text_df_copy2.groupby('speaker')
+
+text_df_copy3 = text_df3.copy()
+grouped_df3 = text_df_copy3.groupby('speaker')
+
+text_df_copy4 = text_df4.copy()
+grouped_df4 = text_df_copy4.groupby('speaker') 
+
+text_df_copy5 = text_df5.copy()
+grouped_df5 = text_df_copy5.groupby('speaker') 
