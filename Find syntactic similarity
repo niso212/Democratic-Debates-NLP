@@ -1,0 +1,23 @@
+from nltk.corpus import wordnet as wn
+
+final_score = []
+
+
+for first_name in candidate_list:   
+  synset_list1 = []
+  for second_name in candidate_list:
+    synset_list2 = []
+    for line1 in grouped_df.get_group(first_name)['line']:
+        synsets_temp = get_synsets(line1) 
+        synset_list1.append(synsets_temp)
+        synset_list1 = deep_flatten(synset_list1)
+
+    for line2 in grouped_df.get_group(second_name)['line']:
+        synsets_temp2 = get_synsets(line2)
+        synset_list2.append(synsets_temp2)
+        synset_list2 = deep_flatten(synset_list2)
+    
+    fin_score = (similarity_score(synset_list1, synset_list2) + similarity_score(synset_list2, synset_list1)) / 2
+
+    final_score.append((first_name, second_name, fin_score))
+    print(final_score) 
