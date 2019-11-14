@@ -112,12 +112,8 @@ def convert_tag(tag):
         return None
       
 def get_synsets(line):
-  tokens = word_tokenize(line)
-  pos_tags = pos_tag(tokens) 
-  tag_list = [tag[1] for tag in pos_tags]
-  wordnet_tags = [convert_tag(tag) for tag in tag_list]
-  synset_taglist = zip(tokens, wordnet_tags)
-  all_synsets = [wn.synsets(x,y) for x,y in synset_taglist]
+  tokens = line
+  all_synsets = [wn.synsets(x) for x in tokens]
   top_synset = [val[0] for val in all_synsets if len(val) > 0] 
 
   return top_synset
